@@ -1,0 +1,44 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.board {
+  flex-direction: row;
+  text-align: center;
+}
+
+.mainContainer {
+  border: solid;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.mainContainer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+  width: 100px;
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.shop {
+  height: 200px;
+}
+
+.shopLeft {
+  grid-row: 1 / span 2;
+  border: solid;
+}
+.shopRight {
+  grid-column: 8;
+  grid-row: 1 / span 2;
+  border: solid;
+}
