@@ -1,2 +1,67 @@
 # mancala
+
 This is a web version of the board game Mancala.
+
+// PLACEHOLDER FOR THE PSEUDOCODE //
+
+1. Define required constants.
+   1.1. let board, turn, winner.
+   1.2. Overall Point Count [starts off at 0 ..not sure if that fits here.]
+
+2. Define required variables.
+
+3. Storing elements that access the page.
+   3.1. All div elements [each container]
+   3.2. Current points for Player 1.
+   3.3. Current points for Player 2.
+   3.4. Overall count of Player 1 wins.
+   3.5. Overall count of Player 2 wins.
+   3.6. Output message for winner/tie.
+   3.7. Play again button && reset score button.
+
+4. Loading the application:
+   4.1. Initializing the state of all variables.
+   4.1.1. Initialize board with 4 pieces in each container [except ends] [24 on each side]
+   [0,4,4,4,4,4,4, 0,4,4,4,4,4,4]
+   4.1.2. Initialize whose turn it is.
+   [Player 1 = 1; Player 2 = -1]
+   4.1.3. Initialize winner to null;
+   Winner = 1,-1, T
+
+   4.2 Render variables to page.
+   4.2.1 - RENDER BOARD
+   4.2.1.1. Loop over all 14 items. Use index of each iteration to access the mapped value from the board array.
+   4.2.2 - RENDER MESSAGE
+   4.2.2.1. Whose turn.
+   4.2.2.2. Winner Message.
+   4.2.2.3. Tie Message.
+
+   4.3. Wait for click.
+
+5. Handle Click.
+   5.0.1. Player can only click on their side of the board. [Return nothing if opponent's side is clicked]
+   5.0.1.1. If Player = 1, then only divs 1-6 are available.
+   5.0.1.2. If Player = -1, then only divs 8-13 are available.
+
+   5.1. Obtain index of clicked item.
+   5.1.0. Return if player clicks on their side but container is empty. [Return nothing].
+   5.1.1. Upon click: moving counter-clockwise, player deposits one of the stones in each pocket until stones run out.
+   5.1.1.1. If you run into your own Mancala store, deposit 1 piece in it.
+   5.1.1.2. If you run into your opponent's store, skip it and move to the next container.
+   5.1.1.3. If the last piece you drop is in your own Mancala, take another turn.
+   5.1.1.3.1. TURN = TURN _ -1 _ -1;
+   5.1.1.4. If the last piece you drop is in an empty pocket ON YOUR SIDE, capture that piece and any pieces in the pocket directly opposite and put it in your Mancala store.
+
+   5.2. Update all arrays on the board.
+   5.2.1. Loop through array and count: board[1-6], board[8-13], board[0], board[7].
+   5.2.1. Display numbers in each container.
+   5.2.2. Display numbers in top scoreboard.
+
+   5.3. Set the winner variable if there's a winner.
+   5.3.1. Loop through entire board to see if board[1-6] or board[8-13] are empty.
+   5.3.2. If 1 side of board is empty, grab remaining pieces and place them in 'store' to the right of that player.
+   5.3.3. Player with most pieces wins.
+
+6. Click Reset After Game Ends
+   6.1. Reset score to 0. Initialize.
+   6.2. Reset 'stones count' to 24 on each side. Initialize.
