@@ -29,33 +29,18 @@ function handleClick(event) {
         for (var i = 1; i <= board[containersIndex]; i++) {
             
             newIndex = ((containersIndex+i) % 14);
-            console.log(newIndex);
-
+            
             if ((newIndex <= 13) && (newIndex > 6)) {
                 board[newIndex] += 1;
             }
 
-            else if ((newIndex > 0) && (newIndex <= 6)) {
-                    board[newIndex+1] += 1;
+            else if ((newIndex >= 0) && (newIndex < 6)) {
+                    board[6 - newIndex] += 1;
             }
 
             else {
                 board[newIndex+1] += 1;
             }
-
-
-            // // If you're still on your side //
-            // if (containersIndex+i <= 13 && containersIndex+i > 6) {
-            //     board[containersIndex + i] += 1;    
-            // }
-
-            // if (containersIndex+i > 13) {
-            //     ((containersIndex+i % 13) + 6
-
-
-
-
-
 
             }
         }
