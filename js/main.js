@@ -1,6 +1,6 @@
 /*----- constants -----*/
 /*----- app's state (variables) -----*/
-let scores, winner, results, board, turn;
+let scores, winner, results, board, turn, stones;
 
 /*----- cached element references -----*/
 const containers = [...document.querySelectorAll(".mainContainer div")];
@@ -18,26 +18,73 @@ function handleClick(event) {
 
     // PLAYER 1'S TURN. IGNORES BOARD[1-6] //
     if (turn === 1 && containersIndex > 6) {
+
+        // Prevents activating an empty container //
+        if (winner || !board[containersIndex]) return;
+
+        // BOARD[CONTAINERINDEX] = STONES //
+        // CONTAINERSINDEX = INDEX VALUE //
+
+        let newIndex;
+        for (var i = 1; i <= board[containersIndex]; i++) {
+            
+            newIndex = ((containersIndex+i) % 14);
+            console.log(newIndex);
+
+            if ((newIndex <= 13) && (newIndex > 6)) {
+                board[newIndex] += 1;
+            }
+
+            else if ((newIndex > 0) && (newIndex <= 6)) {
+                    board[newIndex+1] += 1;
+            }
+
+            else {
+                board[newIndex+1] += 1;
+            }
+
+
+            // // If you're still on your side //
+            // if (containersIndex+i <= 13 && containersIndex+i > 6) {
+            //     board[containersIndex + i] += 1;    
+            // }
+
+            // if (containersIndex+i > 13) {
+            //     ((containersIndex+i % 13) + 6
+
+
+
+
+
+
+            }
+        }
+
+
+        // while (stones) {
+        //     // move shit to the right //
+        //     board[containersIndex] += 1;
+        //     stones--;
+        // }
+        
+        
+        
         //console.log(board[containersIndex]);    // Tells me value inside
         //console.log(containersIndex);           // Give me index of clicked box.
         
         // Iterates through how many stones are in container that was clicked //
         // And deposits 1 in each, moving counter-clockwise                   //
-        for (var i = 1; i <= board[containersIndex]; i++) {
-            board[containersIndex + i] += 1;    
-        }
+        // for (var i = 1; i <= board[containersIndex]; i++) {
+        //     board[containersIndex + i] += 1;    
+        // }
         board[containersIndex] = 0;             // Value inside container = 0
         console.log(board);
 
-    }
 
     // PLAYER 2'S TURN. IGNORES BOARD[7-12]
     if (turn === -1 && containersIndex <= 6) {
         // MAKES THE MOVE STUFF GOES IN HERE //
     }
-
-
-
 }
 
 function initialize() {
