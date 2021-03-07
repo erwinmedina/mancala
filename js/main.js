@@ -9,6 +9,7 @@ let scores = {
 
 /*----- cached element references -----*/
 const containers = [...document.querySelectorAll(".mainContainer div")];
+const borderB = document.getElementById("mainC");
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
 
@@ -23,10 +24,9 @@ for (var i = 1; i < containers.length-1; i++) {
 /*----- functions -----*/
 function handleClick(event) {
     const containersIndex = event.target.getAttribute('id');
-    
 
-    if (winner || (turn === 1 && containersIndex > 7)) return;
-    if (winner || (turn === -1 && containersIndex < 6)) return;
+    if (winner || (turn === 1 && containersIndex > 7) || board[containersIndex] === 0) return;
+    if (winner || (turn === -1 && containersIndex < 6) || board[containersIndex] === 0) return;
 
     newIndex = parseInt(containersIndex)+1;
     stones = board[containersIndex];
@@ -45,19 +45,21 @@ function handleClick(event) {
 
     winner = getWinner();
     currentScore()
-    render();
     turn*=-1;
+    render();
 
 }
 
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    board = [0,0,0,0,0,4,0, 4,4,4,4,4,4,0];
+    board = [0,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    // board = [0,0,0,0,0,4,0, 4,4,4,4,4,4,0]; // TEST BOARD 1 
+    // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
     turn = 1;
     winner = null;
 
-    currentScore()
+    currentScore();
     render();
 }
 
@@ -68,6 +70,19 @@ function render() {
         player1.innerHTML = scores[1];
         player2.innerHTML = scores[-1];  
     })
+    borderB.style.border = "black solid 3px";
+
+    if (turn === 1) {
+        borderB.style.boxShadow = "0 35px 10px 0px #dc3545";
+
+    }
+    else {
+        borderB.style.boxShadow = "0px -35px 10px 0px #f8f9fa";
+    }
+    
+
+
+
 }
 
 function currentScore() {
@@ -85,7 +100,6 @@ function currentScore() {
     scores[-1] = player2Sum;
 }
 
-
 function getWinner() {
     let player1SideZero = 0;
     let player2SideZero = 0;
@@ -96,10 +110,8 @@ function getWinner() {
     for (let i = 7; i <= 12; i++) {
         player2SideZero += board[i];
     }
-
-    console.log("S1 " + player1SideZero);
-    console.log("S2 " + player2SideZero);
-    if ((player1SideZero || player2SideZero) === 0) {
+    
+    if (player1SideZero === 0 || player2SideZero === 0) {
         winner = true;
     }
     return winner;

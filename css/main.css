@@ -39,6 +39,7 @@ header {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  transition: 0.5s;
 }
 
 .mainContainer div {
@@ -59,11 +60,13 @@ header {
 
 .cells:hover {
   background-color: rgba(255, 255, 255, 0.2);
+  font-size: 40px;
 }
 
 .shop {
   border-radius: 50px;
   height: 200px;
+  font-size: 40px;
 }
 
 .shopLeft {
@@ -74,8 +77,4 @@ header {
   grid-column: 8;
   grid-row: 1 / span 2;
   border: solid;
-}
-
-.mainContainer:nth-child(1) {
-  order: 3;
 }
