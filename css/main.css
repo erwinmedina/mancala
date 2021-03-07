@@ -43,7 +43,7 @@ header {
 }
 
 .mainContainer div {
-  background-color: #855e42;
+  background-color: #855e42b2;
   display: flex;
   color: black;
   justify-content: center;
@@ -59,8 +59,9 @@ header {
 }
 
 .cells:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
   font-size: 40px;
+  cursor: pointer;
 }
 
 .shop {

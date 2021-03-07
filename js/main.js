@@ -2,6 +2,7 @@
 /*----- app's state (variables) -----*/
 let winner, results, board, turn, stones;
 
+
 let scores = {
     "1": 0,
     "-1": 0
@@ -28,20 +29,7 @@ function handleClick(event) {
     if (winner || (turn === 1 && containersIndex > 7) || board[containersIndex] === 0) return;
     if (winner || (turn === -1 && containersIndex < 6) || board[containersIndex] === 0) return;
 
-    newIndex = parseInt(containersIndex)+1;
-    stones = board[containersIndex];
-    board[containersIndex] = 0;
-
-    while(stones) {
-        
-        newIndex = ((newIndex) % 14);
-        if (turn === 1 && newIndex === 13) {newIndex = 0};
-        if (turn === -1 && newIndex === 6) {newIndex = 7};
-
-        board[newIndex] += 1;
-        newIndex += 1;
-        stones--;
-    }
+    distributeStones(containersIndex);
 
     winner = getWinner();
     currentScore()
@@ -53,7 +41,7 @@ function handleClick(event) {
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    board = [0,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
     // board = [0,0,0,0,0,4,0, 4,4,4,4,4,4,0]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
     turn = 1;
@@ -70,19 +58,14 @@ function render() {
         player1.innerHTML = scores[1];
         player2.innerHTML = scores[-1];  
     })
+
     borderB.style.border = "black solid 3px";
-
     if (turn === 1) {
-        borderB.style.boxShadow = "0 35px 10px 0px #dc3545";
-
+        borderB.style.boxShadow = "0 35px 10px 0px #dc3545";        
     }
     else {
         borderB.style.boxShadow = "0px -35px 10px 0px #f8f9fa";
     }
-    
-
-
-
 }
 
 function currentScore() {
@@ -115,4 +98,32 @@ function getWinner() {
         winner = true;
     }
     return winner;
+}
+
+// function dropStoneIntoEmpty() {
+    
+// }
+
+function distributeStones(containersIndex) {
+    
+    newIndex = parseInt(containersIndex)+1;
+    stones = board[containersIndex];
+    board[containersIndex] = 0;
+
+    // Handles Distribution //
+    while(stones) {
+        
+        newIndex = ((newIndex) % 14);
+        if (turn === 1 && newIndex === 13) {newIndex = 0};
+        if (turn === -1 && newIndex === 6) {newIndex = 7};
+
+        board[newIndex] += 1;
+        newIndex += 1;
+        stones--;
+    }
+
+    // Handles if you end on your store //
+    if (newIndex === 7 || newIndex === 14) turn *= -1;
+
+
 }
