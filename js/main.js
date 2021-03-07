@@ -4,7 +4,7 @@ let scores, winner, results, board, turn, stones;
 
 /*----- cached element references -----*/
 const containers = [...document.querySelectorAll(".mainContainer div")];
-initialize()
+initialize();
 
 
 /*----- event listeners -----*/
@@ -28,7 +28,7 @@ function handleClick(event) {
         let newIndex;
         for (var i = 1; i <= board[containersIndex]; i++) {
             
-            newIndex = ((containersIndex+i) % 14);
+            newIndex = (modulo((containersIndex+i), 14));
             
             if ((newIndex <= 13) && (newIndex > 6)) {
                 board[newIndex] += 1;
@@ -53,41 +53,113 @@ function handleClick(event) {
 
         // BOARD[CONTAINERINDEX] = STONES //
         // CONTAINERSINDEX = INDEX VALUE //
-
+  
         let newIndex;
-        counter = 7;
-        for (var i = 1; i <= board[containersIndex]; i++) {
-            newIndex = (((containersIndex - i) % 14) + 14) % 14;    
-            
-            if ((newIndex <= 6) && (newIndex >= 0)) {
+        let stones = board[containersIndex];
+        board[containersIndex] = 0;             // Value inside container = 0
+        newIndex = containersIndex;
+        
+        for (var i = 1; i <= stones; i++) {
+
+            newIndex = (containersIndex - i) % 5;
+
+            if (newIndex >= 0) {
                 board[newIndex] += 1;
             }
-            
-            else if ((newIndex >= 7) && (newIndex < 13)) {
-                board[newIndex - ((newIndex) - counter++)] += 1;
+
+            if (newIndex < 0) {
+                board[newIndex*-1 + 6] += 1;
             }
 
-            else {
-                board[newIndex - counter++ + 1] += 1;
-            }
+
+
+
+
+
+
+
+
+
+            // if ((newIndex >= 0) && (newIndex <= 6)) {
+            //     newIndex = modulo(containersIndex-i,14);
+            //     board[newIndex] += 1;
+            //     console.log(newIndex);
+
+            // }
+
+            // else if ((newIndex >= 7) && (newIndex < 13)) {
+            //     // console.log(containersIndex+i);
+            //     newIndex = ((containersIndex+i) % 5) + 6;
+            //     // console.log(newIndex);
+            //     board[newIndex] += 1;
+            //     console.log(newIndex);
+            // }
+
+            // else if (newIndex === 13) {
+            //     board[newIndex] += 0;
+            // }
+
+
+
+
+
+
+
+
+            // if ((newIndex >= 7) && (newIndex < 13)) {
+            //     board[newIndex] += 1;
+            // }
+            
+            // else if ((newIndex <= 6) && (newIndex >= 0)) {
+            //     board[newIndex] += 1;
+            // }
+            // else {
+            //     board[newIndex+1] += 1;
+            // }
+            
+
+
+
+
+
+
+
+
+
+
+
 
         }
-        board[containersIndex] = 0;             // Value inside container = 0
     }
-    console.log(board);
+
+    turn *= -1;
+    render();
 }
 
 function initialize() {
     // [00 - 01 - 02 - 03 - 04 - 05 - 06 - 13] //
     // [00 - 07 - 08 - 09 - 10 - 11 - 12 - 13] //
-    board = [0,4,4,4,4,4,4, 4,4,4,4,4,4,0];
+    board = [0,45,4,4,4,4,4,4,4,4,45,4,4,0];
     turn = -1;
     winner = null;
-    console.log(board);
+    // console.log(board);
 
     render();
 }
 
 function render() {
+    console.log(board);
+    board.forEach(function(containerValue, index) {
+        const cell = document.getElementById(index);
+        // console.log(index)
+        // console.log(board[containerValue]) // SAYS ITS EMPTY, WTF.
+        // console.log(cell) // SAYS ITS EMPTY, WTF.
+        // console.log(cell.innerHTML) 
+        // console.log(containerValue)
+        cell.innerHTML = containerValue;
+    })
+}
 
+function modulo(a,b) {
+    return ((a % b) + b) % b;
 }

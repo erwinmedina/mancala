@@ -44,6 +44,7 @@ header {
 .mainContainer div {
   background-color: #855e42;
   display: flex;
+  color: black;
   justify-content: center;
   align-items: center;
   border: solid;
