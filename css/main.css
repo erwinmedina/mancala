@@ -75,3 +75,7 @@ header {
   grid-row: 1 / span 2;
   border: solid;
 }
+
+.mainContainer:nth-child(1) {
+  order: 3;
+}
