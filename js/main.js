@@ -25,35 +25,15 @@ function handleClick(event) {
 
     while(stones) {
         
-        
         newIndex = ((newIndex) % 14);
         console.log(newIndex);
-        // if (turn === 1 && newIndex === 13) {newIndex = 0, stones+= 1};
-        // if (turn === -1 && newIndex === 6) {newIndex = 7, stones+= 1};
+        if (turn === 1 && newIndex === 13) {newIndex = 0};
+        if (turn === -1 && newIndex === 6) {newIndex = 7};
 
         board[newIndex] += 1;
         newIndex += 1;
         stones--;
-        
-        
 
-
-
-
-
-
-
-        // newIndex = (newIndex) % 14;        
-        // console.log("BEFORE " + newIndex);
-
-        // if (turn === 1 && newIndex === 13) {newIndex = 0, stones+=1};
-        // if (turn === -1 && newIndex === 6) {newIndex = 7, stones+=1};
-        
-        // console.log("AFTER  " + newIndex);
-        // board[newIndex] += 1;
-        
-        // newIndex++;
-        // stones--;
 
     }
     console.log(board);
