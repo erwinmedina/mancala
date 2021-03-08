@@ -44,8 +44,9 @@ function handleClick(event) {
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    // board = [0,1,0,0,0,1,15, 0,0,0,0,0,1,21]; // TEST BOARD 1 
+    //board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    board = [0,1,0,0,1,1,15, 0,0,1,0,0,1,21]; // TEST BOARD 1 
+    // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
     turn = 1;
     winner = null;
@@ -192,3 +193,11 @@ function displayMessage() {
         message.innerHTML = "";
     }
 }
+
+$(function(){
+    $('[data-toggle=popover]').popover({
+      trigger: 'focus',
+      html: true,
+      title: 'Toolbox'
+}) 
+});
