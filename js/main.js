@@ -26,14 +26,14 @@ for (var i = 1; i < containers.length-1; i++) {
 function handleClick(event) {
     const containersIndex = event.target.getAttribute('id');
 
+    // Prevents clicking if: winner, opposite end of board, empty board //
     if (winner || (turn === 1 && containersIndex > 7) || board[containersIndex] === 0) return;
     if (winner || (turn === -1 && containersIndex < 6) || board[containersIndex] === 0) return;
 
     distributeStones(containersIndex);
-
     winner = getWinner();
-    currentScore()
-    turn*=-1;
+    currentScore();
+    turn *= -1;
     render();
 
 }
@@ -42,7 +42,7 @@ function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
     board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    // board = [0,0,0,0,0,4,0, 4,4,4,4,4,4,0]; // TEST BOARD 1 
+    // board = [4,0,0,0,0,2,0, 1,0,3,0,0,0,0]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
     turn = 1;
     winner = null;
@@ -83,6 +83,51 @@ function currentScore() {
     scores[-1] = player2Sum;
 }
 
+
+function distributeStones(containersIndex) {
+    
+    newIndex = parseInt(containersIndex)+1;
+    stones = board[containersIndex];
+    board[containersIndex] = 0;
+    
+    // Handles Distribution //
+    while(stones) {
+        
+        newIndex = ((newIndex) % 14);
+        if (turn === 1 && newIndex === 13) {newIndex = 0};
+        if (turn === -1 && newIndex === 6) {newIndex = 7};
+        
+
+        // Handles P1 if they end in an empty spot on their side of the board //
+        if (stones-1 === 0 && board[newIndex] === 0 && newIndex <= 5 && newIndex >= 0 && turn === 1) {
+            
+            board[6] += board[12 - newIndex];
+            board[6] += 1;
+            board[12 - newIndex] = 0;
+            board[newIndex] = 0;
+            turn *= -1;
+            return;
+        }
+        // Handles P2 if they end in an empty spot on their side of the board //
+        if (stones-1 === 0 && board[newIndex] === 0 && newIndex <= 12 && newIndex >= 7 && turn === -1) {
+            
+            board[13] += board[12 - newIndex];
+            board[13] += 1;
+            board[12 - newIndex] = 0;
+            board[newIndex] = 0;
+            turn *= -1;
+            return;
+        }
+
+        board[newIndex] += 1;
+        newIndex += 1;
+        stones--;
+    }
+    
+    // Handles if you end on your store //
+    if (newIndex === 7 || newIndex === 14) turn *= -1;
+}
+
 function getWinner() {
     let player1SideZero = 0;
     let player2SideZero = 0;
@@ -98,32 +143,4 @@ function getWinner() {
         winner = true;
     }
     return winner;
-}
-
-// function dropStoneIntoEmpty() {
-    
-// }
-
-function distributeStones(containersIndex) {
-    
-    newIndex = parseInt(containersIndex)+1;
-    stones = board[containersIndex];
-    board[containersIndex] = 0;
-
-    // Handles Distribution //
-    while(stones) {
-        
-        newIndex = ((newIndex) % 14);
-        if (turn === 1 && newIndex === 13) {newIndex = 0};
-        if (turn === -1 && newIndex === 6) {newIndex = 7};
-
-        board[newIndex] += 1;
-        newIndex += 1;
-        stones--;
-    }
-
-    // Handles if you end on your store //
-    if (newIndex === 7 || newIndex === 14) turn *= -1;
-
-
 }
