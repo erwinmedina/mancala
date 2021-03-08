@@ -10,7 +10,7 @@ let scores = {
 /*----- cached element references -----*/
 const containers    = [...document.querySelectorAll(".mainContainer div")];
 const boardElement  = document.querySelector(".board");
-const borderB       = document.getElementById("mainC");
+const playerTurnShadow       = document.getElementById("mainC");
 const p1scoreBoard  = document.querySelector(".player1score");
 const p2scoreBoard  = document.querySelector(".player2score");
 const player1       = document.getElementById('player1');
@@ -44,8 +44,8 @@ function handleClick(event) {
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    //board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    board = [0,1,0,0,1,1,15, 0,0,1,0,0,1,21]; // TEST BOARD 1 
+    // board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    board = [0,1,0,0,0,1,25, 0,0,1,0,0,1,18]; // TEST BOARD 1 
     // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
     turn = 1;
@@ -66,27 +66,39 @@ function render() {
 
     resetButton.style.visibility = winner ? 'visible' : 'hidden';
 
-    borderB.style.border = "black solid 3px";
+    playerTurnShadow.style.border = "black solid 3px";
     if (turn === 1) {
-        borderB.style.boxShadow = "0 35px 10px 0px #0d6efd";        
+        playerTurnShadow.style.boxShadow = "0 35px 10px 0px #0d6efd";        
     }
     else {
-        borderB.style.boxShadow = "0px -35px 10px 0px #dc3545";
+        playerTurnShadow.style.boxShadow = "0px -35px 10px 0px #dc3545";
     }
 
     if (winner) {
         if (scores[1] > scores[-1]) {
             boardElement.style.opacity = "0.4";
-            p1scoreBoard.style.transform = "scale(1.3)";
             p2scoreBoard.style.transform = "scale(0.7)"; 
-            borderB.style.boxShadow = "0 0 0 0";        
-     
+            playerTurnShadow.style.boxShadow = "0 0 0 0"; 
+            p1scoreBoard.style.position = "fixed";
+            p1scoreBoard.style.top = "50%";
+            p1scoreBoard.style.right = "50%";
+            p1scoreBoard.style.transform = "scale(1.5) translate(26vw, 50%)";
+            p1scoreBoard.style.zIndex = "12";
+            
         }
         if (scores[1] < scores[-1]) {
             boardElement.style.opacity = "0.4";
-            p2scoreBoard.style.transform = "scale(1.3)";
             p1scoreBoard.style.transform = "scale(0.7)"; 
-            borderB.style.boxShadow = "0 0 0 0";        
+            playerTurnShadow.style.boxShadow = "0 0 0 0";  
+            p2scoreBoard.style.position = "fixed";
+            p2scoreBoard.style.top = "50%";
+            p2scoreBoard.style.right = "50%";
+            p2scoreBoard.style.transform = "scale(1.5) translate(26vw, 70%)";
+            p2scoreBoard.style.zIndex = "12";      
+        }
+        else {
+            boardElement.style.opacity = "0.4";
+            playerTurnShadow.style.boxShadow = "0 0 0 0";        
         }
     }
 
@@ -172,8 +184,11 @@ function getWinner() {
 
 function reset() {
     boardElement.style.opacity = "1";
-    p2scoreBoard.style.transform = "scale(1)";
-    p1scoreBoard.style.transform = "scale(1)";
+    p2scoreBoard.style.transform = "scale(1) translate(0vw, 0%)";
+    p1scoreBoard.style.transform = "scale(1) translate(0vw, 0%)";
+    p1scoreBoard.style.position = "static";
+    p2scoreBoard.style.position = "static";
+
     initialize();
 }
 

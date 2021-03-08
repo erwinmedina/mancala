@@ -3,6 +3,7 @@ body {
   width: 100vw;
   text-align: center;
   background: linear-gradient(0deg, #09203f, #537895);
+  font-family: "rock salt";
 }
 
 header {
@@ -42,7 +43,7 @@ aside {
   margin: 20px 20px 20px 30px;
   width: 300px;
   height: 90px;
-  transition: 1s;
+  transition: 2s;
 }
 
 #player1 {
@@ -140,14 +141,21 @@ aside {
 .reset {
   font-family: "rock salt";
   margin-top: 50px;
+  padding: 50px;
 }
 
 #help {
   position: absolute;
   left: 50px;
-  top: 50px;
+  top: 60px;
 }
 
+.popover {
+  max-width: 1000px !important;
+  opacity: 0.9;
+}
+
+/* THIS IS FOR THE MEDIA QUERY STUFF.  */
 @media (max-width: 1000px) {
   .header {
     margin-bottom: 150px;
