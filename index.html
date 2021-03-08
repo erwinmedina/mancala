@@ -7,20 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <script defer src="js/main.js"></script>
+    <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
     <title>Erwin's Mancala</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <header class="h1">ERWIN'S MANCALA BOARD</header>
+    <header>MANCALA</header>
     <div class="scoreContainer">
-        <aside class="scoreBoard player1 bg-primary">PLAYER 1 SCORE
+        <div class="scoreBoard player1score bg-primary">
+            <div class="player1">P1 CURRENT SCORE</div>
             <div id="player1"></div>
-        </aside>
-        <aside class="scoreBoard player2 bg-success">PLAYER 2 SCORE
+        </div>
+        <div class="scoreBoard player2score bg-success">
+            <div class="player2">P2 CURRENT SCORE</div>
             <div id="player2"></div>
-        </aside>
+        </div>
     </div>
 
 

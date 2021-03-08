@@ -6,8 +6,46 @@ body {
 }
 
 header {
+  font-family: "rock salt";
+  font-size: 60px;
   height: 100px;
   color: white;
+}
+
+aside {
+  font-family: "rock salt";
+}
+
+.scoreBoard {
+  left: -10px;
+  font-family: "rock salt";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+  border-radius: 30px;
+  margin: 20px 20px 20px 30px;
+  width: 300px;
+  height: 90px;
+}
+
+#player1 {
+  height: 84px;
+  width: 90px;
+  border-radius: 0 25px 25px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#player2 {
+  height: 84px;
+  width: 90px;
+  border-radius: 0 25px 25px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .scoreContainer {
@@ -16,12 +54,12 @@ header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  vertical-align: middle;
+  word-spacing: 5px;
 }
 .scoreBoard {
-  margin: 20px 20px 20px 30px;
-  width: 300px;
-  border: solid;
-  border-radius: 30px;
+  display: flex;
+  vertical-align: center;
 }
 
 .board {
@@ -43,6 +81,7 @@ header {
 }
 
 .mainContainer div {
+  font-family: "rock salt";
   background-color: #855e42b2;
   display: flex;
   color: black;
