@@ -59,7 +59,7 @@ function render() {
     // Updates the board //
     board.forEach(function(containerValue, index) {
         const cell = document.getElementById(index);
-        cell.innerHTML = containerValue;
+        // cell.innerHTML = containerValue;
         player1.innerHTML = scores[1];
         player2.innerHTML = scores[-1];  
     })
@@ -223,17 +223,19 @@ function displayMessage() {
 $(function () {
     $('.bcells').popover({
         placement: 'bottom',
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="cCells popover-body"></div></div>',
         trigger: 'hover',
         content: function () {
-            return $(this).html();
-        }
+            return (board[$(this).attr('id')]);
+        },
     })
 
     $('.tcells, .shop').popover({
         placement: 'top',
         trigger: 'hover',
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="cCells popover-body"></div></div>',
         content: function () {
-            return $(this).html();
+            return (board[$(this).attr('id')]);
         }
     })
 })

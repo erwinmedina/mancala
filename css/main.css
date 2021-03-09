@@ -154,6 +154,14 @@ aside {
   max-width: 1000px !important;
   opacity: 0.9;
 }
+.cCells {
+  /* background-color: rgba(255, 0, 0, 0.5); */
+  font-size: 24px;
+  text-align: center;
+  font-family: "rock salt";
+  height: 70px;
+  width: 70px;
+}
 
 /* .stoneImage {
   display: block;
