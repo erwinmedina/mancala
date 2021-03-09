@@ -103,9 +103,6 @@ aside {
   font-family: "rock salt";
   background-color: #855e42b2;
   display: flex;
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr); */
   color: black;
   justify-content: center;
   align-items: center;
@@ -158,13 +155,13 @@ aside {
   opacity: 0.9;
 }
 
-.stoneImage {
+/* .stoneImage {
   display: block;
   background: url("../images/CP1.png");
   height: 23px;
   width: 32px;
   background-size: cover;
-}
+} */
 
 /* THIS IS FOR THE MEDIA QUERY STUFF.  */
 @media (max-width: 1000px) {

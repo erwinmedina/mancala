@@ -44,11 +44,11 @@ function handleClick(event) {
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    // board = [0,1,0,0,0,1,25, 0,0,1,0,0,1,48]; // TEST BOARD 1 
+    // board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    board = [0,1,0,0,0,1,125, 0,0,1,0,0,1,48]; // TEST BOARD 1 
     // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
-    turn = 1;let
+    turn = 1;
     winner = null;
 
     currentScore();
@@ -82,18 +82,18 @@ function render() {
             p1scoreBoard.style.position = "fixed";
             p1scoreBoard.style.top = "50%";
             p1scoreBoard.style.right = "50%";
-            p1scoreBoard.style.transform = "scale(1.5) translate(26vw, 50%)";
+            p1scoreBoard.style.transform = "scale(1.5) translate(520px, 10px)";
             p1scoreBoard.style.zIndex = "12";
             
         }
-        if (scores[1] < scores[-1]) {
+        else if (scores[1] < scores[-1]) {
             boardElement.style.opacity = "0.4";
             p1scoreBoard.style.transform = "scale(0.7)"; 
             playerTurnShadow.style.boxShadow = "0 0 0 0";  
             p2scoreBoard.style.position = "fixed";
             p2scoreBoard.style.top = "50%";
             p2scoreBoard.style.right = "50%";
-            p2scoreBoard.style.transform = "scale(1.5) translate(26vw, 70%)";
+            p2scoreBoard.style.transform = "scale(1.5) translate(520px, 10px)";
             p2scoreBoard.style.zIndex = "12";      
         }
         else {
