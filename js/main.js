@@ -8,15 +8,15 @@ let scores = {
 }
 
 /*----- cached element references -----*/
-const containers    = [...document.querySelectorAll(".mainContainer div")];
-const boardElement  = document.querySelector(".board");
-const playerTurnShadow       = document.getElementById("mainC");
-const p1scoreBoard  = document.querySelector(".player1score");
-const p2scoreBoard  = document.querySelector(".player2score");
-const player1       = document.getElementById('player1');
-const player2       = document.getElementById('player2');
-const resetButton   = document.querySelector(".reset");
-const message       = document.querySelector(".message");
+const containers        = [...document.querySelectorAll(".mainContainer div")];
+const boardElement      = document.querySelector(".board");
+const playerTurnShadow  = document.getElementById("mainC");
+const p1scoreBoard      = document.querySelector(".player1score");
+const p2scoreBoard      = document.querySelector(".player2score");
+const player1           = document.getElementById('player1');
+const player2           = document.getElementById('player2');
+const resetButton       = document.querySelector(".reset");
+const message           = document.querySelector(".message");
 initialize();
 
 
@@ -44,11 +44,11 @@ function handleClick(event) {
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    // board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    board = [0,1,0,0,0,1,25, 0,0,1,0,0,1,18]; // TEST BOARD 1 
+    board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    // board = [0,1,0,0,0,1,25, 0,0,1,0,0,1,48]; // TEST BOARD 1 
     // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
-    turn = 1;
+    turn = 1;let
     winner = null;
 
     currentScore();
@@ -209,10 +209,12 @@ function displayMessage() {
     }
 }
 
-$(function(){
-    $('[data-toggle=popover]').popover({
-      trigger: 'focus',
-      html: true,
-      title: 'Toolbox'
-}) 
-});
+// function replaceNumWithImage(cell) {
+//     cell.outerHTML = 
+
+// }
+
+// function recursionFunction(func, times) {
+//     func();
+//     times && --times && replaceNumWithImage(func, times);
+// }
