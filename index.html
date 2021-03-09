@@ -7,14 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <script defer src="js/main.js"></script>
-    <!-- BOOTSTRAP -->
 
+    <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>Erwin's Mancala</title>
+    <title>Mancala</title>
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -37,43 +36,33 @@
 
     <div class="message"></div>
 
+    <!-- this is needed to run the jquery? Apparently so -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-            var image = '<img src="https://i.imgur.com/mIof2YM.png" width="700" height="500">'
-            $('[data-toggle="popover"]').popover({
-                title: "Instructions",
-                container: "body",
-                placement: 'auto',
-                trigger: 'hover',
-                html: true,
-                content: image,
-            });
-        });
+
+
     </script>
     <button id="help" type="button" class="btn btn-lg btn-outline-light" data-toggle="popover">HELP</button>
 
-
-
-
     <div class="board">
         <main id="mainC" class="mainContainer">
-            <div id="13" class="shopLeft shop"></div>
-            <div id="12" class="cells"></div>
-            <div id="11" class="cells"></div>
-            <div id="10" class="cells"></div>
-            <div id="9" class="cells"></div>
-            <div id="8" class="cells"></div>
-            <div id="7" class="cells"></div>
-            <div id="0" class="cells"></div>
-            <div id="1" class="cells"></div>
-            <div id="2" class="cells"></div>
-            <div id="3" class="cells"></div>
-            <div id="4" class="cells"></div>
-            <div id="5" class="cells"></div>
-            <div id="6" class="shopRight shop"></div>
+
+            <div id="13" data-toggle="popover" html="true" class="shopLeft shop"></div>
+            <div id="12" data-toggle="popover" class="cells tcells"></div>
+            <div id="11" data-toggle="popover" class="cells tcells"></div>
+            <div id="10" data-toggle="popover" class="cells tcells"></div>
+            <div id="9" data-toggle="popover" class="cells tcells"></div>
+            <div id="8" data-toggle="popover" class="cells tcells"></div>
+            <div id="7" data-toggle="popover" class="cells tcells"></div>
+            <div id="0" data-toggle="popover" class="cells bcells"></div>
+            <div id="1" data-toggle="popover" class="cells bcells"></div>
+            <div id="2" data-toggle="popover" class="cells bcells"></div>
+            <div id="3" data-toggle="popover" class="cells bcells"></div>
+            <div id="4" data-toggle="popover" class="cells bcells"></div>
+            <div id="5" data-toggle="popover" class="cells bcells"></div>
+            <div id="6" data-toggle="popover" class="shopRight shop"></div>
         </main>
     </div>
 

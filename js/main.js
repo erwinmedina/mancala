@@ -31,7 +31,7 @@ function handleClick(event) {
     const containersIndex = event.target.getAttribute('id');
 
     // Prevents clicking if: winner, opposite end of board, empty board //
-    if (winner || (turn === 1 && containersIndex > 7) || board[containersIndex] === 0) return;
+    if (winner || (turn === 1 && containersIndex > 6) || board[containersIndex] === 0) return;
     if (winner || (turn === -1 && containersIndex < 6) || board[containersIndex] === 0) return;
 
     distributeStones(containersIndex);
@@ -45,7 +45,7 @@ function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
     board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    // board = [0,1,0,0,0,1,125, 0,0,1,0,0,1,48]; // TEST BOARD 1 
+    // board = [0,1,0,0,0,1,15, 0,0,1,0,0,1,18]; // TEST BOARD 1 
     // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 1 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
     turn = 1;
@@ -218,3 +218,35 @@ function displayMessage() {
 //     func();
 //     times && --times && replaceNumWithImage(func, times);
 // }
+
+// THIS SHOWS THE NUMBERS IN EACH CONTAINER UPON HOVER //
+$(function () {
+    $('.bcells').popover({
+        placement: 'bottom',
+        trigger: 'hover',
+        content: function () {
+            return $(this).html();
+        }
+    })
+
+    $('.tcells, .shop').popover({
+        placement: 'top',
+        trigger: 'hover',
+        content: function () {
+            return $(this).html();
+        }
+    })
+})
+
+// HELP BUTTON //
+$(function () {
+    var image = '<img src="https://i.imgur.com/mIof2YM.png" width="700" height="500">'
+    $('#help').popover({
+        title: "Instructions",
+        container: "body",
+        placement: 'auto',
+        trigger: 'hover',
+        html: true,
+        content: image,
+    });
+});
