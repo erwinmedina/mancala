@@ -146,7 +146,7 @@ aside {
 
 #help {
   position: absolute;
-  left: 50px;
+  left: 30px;
   top: 60px;
 }
 
@@ -157,12 +157,12 @@ aside {
 
 #p1color {
   position: absolute;
-  left: 50px;
+  left: 30px;
   top: 150px;
 }
 #p2color {
   position: absolute;
-  left: 50px;
+  left: 30px;
   top: 240px;
 }
 
@@ -178,18 +178,11 @@ aside {
   position: absolute;
   top: 0;
   left: 0;
-  width: 180px;
+  width: 150px;
   min-height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  transition: 1s;
 }
-
-/* .stoneImage {
-  display: block;
-  background: url("../images/CP1.png");
-  height: 23px;
-  width: 32px;
-  background-size: cover;
-} */
 
 /* THIS IS FOR THE MEDIA QUERY STUFF.  */
 @media (max-width: 1000px) {

@@ -23,6 +23,7 @@ const message           = document.querySelector(".message");
 const header            = document.querySelector("header");
 const p1color           = document.getElementById("p1color");
 const p2color           = document.getElementById("p2color");
+const sidebar           = document.querySelector(".aside");
 initialize();
 
 
@@ -50,8 +51,8 @@ function handleClick(event) {
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    // board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    board = [0,0,0,0,0,9,45, 0,0,1,0,0,1,18]; // TEST BOARD 1 
+    board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    // board = [0,0,0,0,0,9,45, 0,0,1,0,0,1,18]; // TEST BOARD 1 
     // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 2 
     // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; //  TEST BOARD 3
     
@@ -84,14 +85,16 @@ function render() {
     }
 
     if (winner) {
+        sidebar.style.display = "none";
         if (scores[1] > scores[-1]) {
             boardElement.style.opacity = "0.4";
             p2scoreBoard.style.transform = "scale(0.7)"; 
             playerTurnShadow.style.boxShadow = "0 0 0 0"; 
-            p1scoreBoard.style.position = "fixed";
-            p1scoreBoard.style.top = "50%";
-            p1scoreBoard.style.right = "50%";
-            p1scoreBoard.style.transform = "scale(1.5) translate(-50%, -50%)";
+            p1scoreBoard.style.transform = "scale(1.5)";
+            // p1scoreBoard.style.position = "fixed";
+            // p1scoreBoard.style.top = "50%";
+            // p1scoreBoard.style.right = "50%";
+            // p1scoreBoard.style.transform = "scale(1.5) translate(-50%, -50%)";
             p1scoreBoard.style.zIndex = "12";
             
         }
@@ -99,10 +102,11 @@ function render() {
             boardElement.style.opacity = "0.4";
             p1scoreBoard.style.transform = "scale(0.7)"; 
             playerTurnShadow.style.boxShadow = "0 0 0 0";  
-            p2scoreBoard.style.position = "sticky";
-            p2scoreBoard.style.top = "50%";
-            p2scoreBoard.style.right = "50%";
-            p2scoreBoard.style.transform = "scale(1.5) translate(125%, 80%)";
+            p2scoreBoard.style.transform = "scale(1.5)";
+            // p2scoreBoard.style.position = "sticky";
+            // p2scoreBoard.style.top = "50%";
+            // p2scoreBoard.style.right = "50%";
+            // p2scoreBoard.style.transform = "scale(1.5) translate(125%, 80%)";
             p2scoreBoard.style.zIndex = "12";      
         }
         else {
@@ -132,7 +136,9 @@ function distributeStones(containersIndex, stones) {
         board[6] += 1;
         board[12 - newIndex] = 0;
         board[newIndex] = 0;
+        highlight(newIndex);
         highlight(6);
+        highlight(12-newIndex);
         currentScore();
         winner = getWinner();
         render();
@@ -145,7 +151,9 @@ function distributeStones(containersIndex, stones) {
         board[13] += 1;
         board[12 - newIndex] = 0;
         board[newIndex] = 0;
+        highlight(newIndex);
         highlight(13);
+        highlight(12-newIndex);
         currentScore(); 
         winner = getWinner();
         render();
@@ -214,6 +222,7 @@ function reset() {
     p1scoreBoard.style.transform = "scale(1) translate(0vw, 0%)";
     p1scoreBoard.style.position = "static";
     p2scoreBoard.style.position = "static";
+    sidebar.style.display = "inline-block"
 
     initialize();
 }

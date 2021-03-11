@@ -24,7 +24,21 @@
 <body>
     <header>MANCALA</header>
 
-    <div data-toggle="collapse" class="aside"></div>
+    <div class="aside">
+
+        <!-- this is needed to run the jquery? Apparently so -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+        <script>
+
+
+        </script>
+        <button id="help" type="button" class="btn btn-lg btn-outline-light" data-toggle="popover">HELP</button>
+        <input type="color" id="p1color" name="p1color" value="#0d6efd">
+        <input type="color" id="p2color" name="p2color" value="#dc3545">
+
+    </div>
 
     <div class="scoreContainer">
         <div class="scoreBoard player1score">
@@ -39,17 +53,6 @@
 
     <div class="message"></div>
 
-    <!-- this is needed to run the jquery? Apparently so -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
-    <script>
-
-
-    </script>
-    <button id="help" type="button" class="btn btn-lg btn-outline-light" data-toggle="popover">HELP</button>
-    <input type="color" id="p1color" name="p1color" value="#0d6efd">
-    <input type="color" id="p2color" name="p2color" value="#dc3545">
 
 
     <div class="board">
