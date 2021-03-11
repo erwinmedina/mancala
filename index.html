@@ -23,12 +23,15 @@
 
 <body>
     <header>MANCALA</header>
+
+    <div data-toggle="collapse" class="aside"></div>
+
     <div class="scoreContainer">
-        <div class="scoreBoard player1score bg-primary">
+        <div class="scoreBoard player1score">
             <div class="player1">P1 CURRENT SCORE</div>
             <div id="player1"></div>
         </div>
-        <div class="scoreBoard player2score bg-danger">
+        <div class="scoreBoard player2score">
             <div class="player2">P2 CURRENT SCORE</div>
             <div id="player2"></div>
         </div>
@@ -45,24 +48,27 @@
 
     </script>
     <button id="help" type="button" class="btn btn-lg btn-outline-light" data-toggle="popover">HELP</button>
+    <input type="color" id="p1color" name="p1color" value="#0d6efd">
+    <input type="color" id="p2color" name="p2color" value="#dc3545">
+
 
     <div class="board">
         <main id="mainC" class="mainContainer">
 
-            <div id="13" data-toggle="popover" html="true" class="shopLeft shop"></div>
-            <div id="12" data-toggle="popover" class="cells tcells"></div>
-            <div id="11" data-toggle="popover" class="cells tcells"></div>
-            <div id="10" data-toggle="popover" class="cells tcells"></div>
-            <div id="9" data-toggle="popover" class="cells tcells"></div>
-            <div id="8" data-toggle="popover" class="cells tcells"></div>
-            <div id="7" data-toggle="popover" class="cells tcells"></div>
-            <div id="0" data-toggle="popover" class="cells bcells"></div>
-            <div id="1" data-toggle="popover" class="cells bcells"></div>
-            <div id="2" data-toggle="popover" class="cells bcells"></div>
-            <div id="3" data-toggle="popover" class="cells bcells"></div>
-            <div id="4" data-toggle="popover" class="cells bcells"></div>
-            <div id="5" data-toggle="popover" class="cells bcells"></div>
-            <div id="6" data-toggle="popover" class="shopRight shop"></div>
+            <div id="13" class="shopLeft shop"></div>
+            <div id="12" class="cells"></div>
+            <div id="11" class="cells"></div>
+            <div id="10" class="cells"></div>
+            <div id="9" class="cells"></div>
+            <div id="8" class="cells"></div>
+            <div id="7" class="cells"></div>
+            <div id="0" class="cells"></div>
+            <div id="1" class="cells"></div>
+            <div id="2" class="cells"></div>
+            <div id="3" class="cells"></div>
+            <div id="4" class="cells"></div>
+            <div id="5" class="cells"></div>
+            <div id="6" class="shopRight shop"></div>
         </main>
     </div>
 

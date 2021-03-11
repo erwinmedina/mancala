@@ -1,4 +1,7 @@
 /*----- constants -----*/
+let player1RGB = "#0d6efd";
+let player2RGB = "#dc3545";
+
 /*----- app's state (variables) -----*/
 let winner, results, board, turn, stones;
 
@@ -17,6 +20,9 @@ const player1           = document.getElementById('player1');
 const player2           = document.getElementById('player2');
 const resetButton       = document.querySelector(".reset");
 const message           = document.querySelector(".message");
+const header            = document.querySelector("header");
+const p1color           = document.getElementById("p1color");
+const p2color           = document.getElementById("p2color");
 initialize();
 
 
@@ -26,6 +32,7 @@ for (var i = 1; i < containers.length-1; i++) {
     }
 resetButton.addEventListener("click", reset);
 
+
 /*----- functions -----*/
 function handleClick(event) {
     const containersIndex = event.target.getAttribute('id');
@@ -34,24 +41,23 @@ function handleClick(event) {
     if (winner || (turn === 1 && containersIndex > 6) || board[containersIndex] === 0) return;
     if (winner || (turn === -1 && containersIndex < 6) || board[containersIndex] === 0) return;
 
-    distributeStones(containersIndex);
-    winner = getWinner();
-    currentScore();
-    turn *= -1;
+    stones = board[containersIndex];
+    board[containersIndex] = 0;
+    distributeStones(containersIndex, stones);
     render();
 }
 
 function initialize() {
     // [13 - 12 - 11 - 10 - 09 - 08 - 07 - 06] //
     // [13 - 00 - 01 - 02 - 03 - 04 - 05 - 06] //
-    board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
-    // board = [0,1,0,0,0,1,15, 0,0,1,0,0,1,18]; // TEST BOARD 1 
-    // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 1 
-    // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; // TEST BOARD 2
+    // board = [4,4,4,4,4,4,0, 4,4,4,4,4,4,0];
+    board = [0,0,0,0,0,9,45, 0,0,1,0,0,1,18]; // TEST BOARD 1 
+    // board = [0,1,0,0,1,1,25, 0,0,1,0,0,1,21]; // TEST BOARD 2 
+    // board = [0,4,4,4,4,4,0, 4,4,4,4,4,49,0]; //  TEST BOARD 3
+    
     turn = 1;
     winner = null;
-
-    currentScore();
+    currentScore(); 
     render();
 }
 
@@ -59,19 +65,22 @@ function render() {
     // Updates the board //
     board.forEach(function(containerValue, index) {
         const cell = document.getElementById(index);
-        // cell.innerHTML = containerValue;
+        cell.innerHTML = containerValue;
         player1.innerHTML = scores[1];
         player2.innerHTML = scores[-1];  
     })
 
     resetButton.style.visibility = winner ? 'visible' : 'hidden';
+    p1scoreBoard.style.backgroundColor = player1RGB;
+    p2scoreBoard.style.backgroundColor = player2RGB;
+
 
     playerTurnShadow.style.border = "black solid 3px";
-    if (turn === 1) {
-        playerTurnShadow.style.boxShadow = "0 35px 10px 0px #0d6efd";        
+    if (turn === 1) {      
+        playerTurnShadow.style.boxShadow = `0 35px 10px 0px ${player1RGB}`;        
     }
     else {
-        playerTurnShadow.style.boxShadow = "0px -35px 10px 0px #dc3545";
+        playerTurnShadow.style.boxShadow = `0px -35px 10px 0px ${player2RGB}`;
     }
 
     if (winner) {
@@ -82,7 +91,7 @@ function render() {
             p1scoreBoard.style.position = "fixed";
             p1scoreBoard.style.top = "50%";
             p1scoreBoard.style.right = "50%";
-            p1scoreBoard.style.transform = "scale(1.5) translate(520px, 10px)";
+            p1scoreBoard.style.transform = "scale(1.5) translate(-50%, -50%)";
             p1scoreBoard.style.zIndex = "12";
             
         }
@@ -90,10 +99,10 @@ function render() {
             boardElement.style.opacity = "0.4";
             p1scoreBoard.style.transform = "scale(0.7)"; 
             playerTurnShadow.style.boxShadow = "0 0 0 0";  
-            p2scoreBoard.style.position = "fixed";
+            p2scoreBoard.style.position = "sticky";
             p2scoreBoard.style.top = "50%";
             p2scoreBoard.style.right = "50%";
-            p2scoreBoard.style.transform = "scale(1.5) translate(520px, 10px)";
+            p2scoreBoard.style.transform = "scale(1.5) translate(125%, 80%)";
             p2scoreBoard.style.zIndex = "12";      
         }
         else {
@@ -101,68 +110,73 @@ function render() {
             playerTurnShadow.style.boxShadow = "0 0 0 0";        
         }
     }
-
     displayMessage();
 }
 
-function currentScore() {
-    
-    let player1Sum = 0;
-    let player2Sum = 0;
-    for (let i = 0; i <= 13; i++) {
-        if (i <= 6) {
-            player1Sum += board[i]}
-        else {
-            player2Sum += board[i]}
-    }
-    
-    scores[1] = player1Sum;
-    scores[-1] = player2Sum;
-}
-
-
-function distributeStones(containersIndex) {
+function distributeStones(containersIndex, stones) {
     
     newIndex = parseInt(containersIndex)+1;
-    stones = board[containersIndex];
-    board[containersIndex] = 0;
-    
-    // Handles Distribution //
-    while(stones) {
-        
-        newIndex = ((newIndex) % 14);
-        if (turn === 1 && newIndex === 13) {newIndex = 0};
-        if (turn === -1 && newIndex === 6) {newIndex = 7};
-        
-
-        // Handles P1 if they end in an empty spot on their side of the board //
-        if (stones-1 === 0 && board[newIndex] === 0 && newIndex <= 5 && newIndex >= 0 && turn === 1) {
-            
-            board[6] += board[12 - newIndex];
-            board[6] += 1;
-            board[12 - newIndex] = 0;
-            board[newIndex] = 0;
-            turn *= -1;
-            return;
-        }
-        // Handles P2 if they end in an empty spot on their side of the board //
-        if (stones-1 === 0 && board[newIndex] === 0 && newIndex <= 12 && newIndex >= 7 && turn === -1) {
-            
-            board[13] += board[12 - newIndex];
-            board[13] += 1;
-            board[12 - newIndex] = 0;
-            board[newIndex] = 0;
-            turn *= -1;
-            return;
-        }
-
-        board[newIndex] += 1;
-        newIndex += 1;
-        stones--;
-    }
-    
     // Handles if you end on your store //
-    if (newIndex === 7 || newIndex === 14) turn *= -1;
+    if ((stones === 0) && (newIndex === 7 || newIndex === 14)) turn *= -1;
+ 
+    // Handles Distribution //
+    newIndex = ((newIndex) % 14);
+
+    if (turn === 1 && newIndex === 13) {newIndex = 0};
+    if (turn === -1 && newIndex === 6) {newIndex = 7};
+
+    // Handles P1 if they end in an empty spot on their side of the board //
+    if (stones-1 === 0 && board[newIndex] === 0 && newIndex <= 5 && newIndex >= 0 && turn === 1) {
+        
+        board[6] += board[12 - newIndex];
+        board[6] += 1;
+        board[12 - newIndex] = 0;
+        board[newIndex] = 0;
+        highlight(6);
+        currentScore();
+        winner = getWinner();
+        render();
+        return;
+    }
+    // Handles P2 if they end in an empty spot on their side of the board //
+    if (stones-1 === 0 && board[newIndex] === 0 && newIndex <= 12 && newIndex >= 7 && turn === -1) {
+        
+        board[13] += board[12 - newIndex];
+        board[13] += 1;
+        board[12 - newIndex] = 0;
+        board[newIndex] = 0;
+        highlight(13);
+        currentScore(); 
+        winner = getWinner();
+        render();
+        return;
+    }
+
+    if (stones === 0) {
+        turn *= -1; 
+        currentScore(); 
+        winner = getWinner();
+        render();
+        headerFlash(header);
+        return;
+        };
+
+    highlight(newIndex);
+    board[newIndex] += 1;
+    stones--;
+    render();
+    return setTimeout(function() {distributeStones(newIndex, stones)}, 250);
+}
+
+function highlight(newIndex) {
+    const cell = document.getElementById(newIndex);
+    cell.style.borderColor = "rgba(255, 255, 255, .5)"; 
+    cell.style.backgroundColor = "rgba(255,255,255, .5)";
+    
+    setTimeout(function() {
+        cell.style.borderColor = "rgba(0, 0, 0, 1)"; 
+        cell.style.backgroundColor = "#855e42b2";
+    }, 500);
 }
 
 function getWinner() {
@@ -180,6 +194,18 @@ function getWinner() {
         winner = true;
     }
     return winner;
+}
+
+function currentScore() {
+    
+    scores[1] = 0;
+    scores[-1] = 0;
+    for (let i = 0; i <= 13; i++) {
+        if (i <= 6) {
+            scores[1] += board[i]}
+        else {
+            scores[-1] += board[i]}
+    }
 }
 
 function reset() {
@@ -204,41 +230,7 @@ function displayMessage() {
             message.innerHTML = "THE GAME IS TIED";
         }
     }
-    else {
-        message.innerHTML = "";
-    }
 }
-
-// function replaceNumWithImage(cell) {
-//     cell.outerHTML = 
-
-// }
-
-// function recursionFunction(func, times) {
-//     func();
-//     times && --times && replaceNumWithImage(func, times);
-// }
-
-// THIS SHOWS THE NUMBERS IN EACH CONTAINER UPON HOVER //
-$(function () {
-    $('.bcells').popover({
-        placement: 'bottom',
-        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="cCells popover-body"></div></div>',
-        trigger: 'hover',
-        content: function () {
-            return (board[$(this).attr('id')]);
-        },
-    })
-
-    $('.tcells, .shop').popover({
-        placement: 'top',
-        trigger: 'hover',
-        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="cCells popover-body"></div></div>',
-        content: function () {
-            return (board[$(this).attr('id')]);
-        }
-    })
-})
 
 // HELP BUTTON //
 $(function () {
@@ -252,3 +244,20 @@ $(function () {
         content: image,
     });
 });
+
+function headerFlash(header) {
+    header.style.color = "rgba(255,255,255, 0.6)";
+    setTimeout(function() {
+        header.style.color = "white";
+    }, 500);
+}
+
+p1color.onchange = function() {
+    player1RGB = this.value;
+    render();
+}
+p2color.onchange = function() {
+    player2RGB = this.value;
+    render();
+}
+
