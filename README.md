@@ -1,67 +1,42 @@
-# mancala
+# Mancala
 
-This is a web version of the board game Mancala.
+## History / Background
 
-// PLACEHOLDER FOR THE PSEUDOCODE //
+Mancala is a two-player turn based strategy board game. The objective of this game is to capture more pieces than your opponent, with the pieces being represented by variety of items such as seeds, stones, beans, or gems. There is evidence that suggests that the game originated in 7th century Ancient Egypt, and it is among the oldest known games still played today.
+The game also goes by a variety of different names, such as, "Ali Guli Mane" in Southern India, "Oware" in West Africa, "Warra" or "Kalah" in the United States back in the early 1940's.
 
-1. Define required constants.
-   1.1. let board, turn, winner.
-   1.2. Overall Point Count [starts off at 0 ..not sure if that fits here.]
+## Rules
 
-2. Define required variables.
+1. Gameplay starts with Player 1 picking up all of the pieces in any one of the containers on his/her side.
+2. Moving counter-clockwise, the player deposits 1 stone in each pocket until the stones run out.
+3. If you run into your own Mancala (store), deposit 1 stone. Otherwise if you run into your opponent's Mancala, skip it, and move to the next available container.
+4. If the last piece you drop is in your own Mancala, take another turn.
+5. If the last piece you drop is in an empty container on your side, capture that piece along with any pieces in the container directly opposite to it.
+6. Game ends when all 6 pockets on 1 side of the board are empty.
 
-3. Storing elements that access the page.
-   3.1. All div elements [each container]
-   3.2. Current points for Player 1.
-   3.3. Current points for Player 2.
-   3.4. Overall count of Player 1 wins.
-   3.5. Overall count of Player 2 wins.
-   3.6. Output message for winner/tie.
-   3.7. Play again button && reset score button.
+## Screenshots
 
-4. Loading the application:
-   4.1. Initializing the state of all variables.
-   4.1.1. Initialize board with 4 pieces in each container [except ends] [24 on each side]
-   [0,4,4,4,4,4,4, 0,4,4,4,4,4,4]
-   4.1.2. Initialize whose turn it is.
-   [Player 1 = 1; Player 2 = -1]
-   4.1.3. Initialize winner to null;
-   Winner = 1,-1, T
+![screenshot 1](/images/1.png)
+![screenshot 2](/images/2.png)
+![screenshot 3](/images/3.png)
+![screenshot 4](/images/4.png)
+![screenshot 5](/images/5.png)
 
-   4.2 Render variables to page.
-   4.2.1 - RENDER BOARD
-   4.2.1.1. Loop over all 14 items. Use index of each iteration to access the mapped value from the board array.
-   4.2.2 - RENDER MESSAGE
-   4.2.2.1. Whose turn.
-   4.2.2.2. Winner Message.
-   4.2.2.3. Tie Message.
+## Technology Used
 
-   4.3. Wait for click.
+1. HTML
+2. CSS, Bootstrap
+3. Javascript, jQuery
 
-5. Handle Click.
-   5.0.1. Player can only click on their side of the board. [Return nothing if opponent's side is clicked]
-   5.0.1.1. If Player = 1, then only divs 1-6 are available.
-   5.0.1.2. If Player = -1, then only divs 8-13 are available.
+## Getting Started
 
-   5.1. Obtain index of clicked item.
-   5.1.0. Return if player clicks on their side but container is empty. [Return nothing].
-   5.1.1. Upon click: moving counter-clockwise, player deposits one of the stones in each pocket until stones run out.
-   5.1.1.1. If you run into your own Mancala store, deposit 1 piece in it.
-   5.1.1.2. If you run into your opponent's store, skip it and move to the next container.
-   5.1.1.3. If the last piece you drop is in your own Mancala, take another turn.
-   5.1.1.3.1. TURN = TURN _ -1 _ -1;
-   5.1.1.4. If the last piece you drop is in an empty pocket ON YOUR SIDE, capture that piece and any pieces in the pocket directly opposite and put it in your Mancala store.
+[Click here to get to the game](https://erwinmedina.github.io/mancala/)
 
-   5.2. Update all arrays on the board.
-   5.2.1. Loop through array and count: board[1-6], board[8-13], board[0], board[7].
-   5.2.1. Display numbers in each container.
-   5.2.2. Display numbers in top scoreboard.
+Player 1 starts on the bottom with the initial color of Blue. However, if you hate blue and want to switch colors, the color picker on the left hand side of the screen allows you to do so.
 
-   5.3. Set the winner variable if there's a winner.
-   5.3.1. Loop through entire board to see if board[1-6] or board[8-13] are empty.
-   5.3.2. If 1 side of board is empty, grab remaining pieces and place them in 'store' to the right of that player.
-   5.3.3. Player with most pieces wins.
+## Icebox Items
 
-6. Click Reset After Game Ends
-   6.1. Reset score to 0. Initialize.
-   6.2. Reset 'stones count' to 24 on each side. Initialize.
+- Implementing stones in a 3D or creative manner to illustrate realism.
+- Create a mobile version that made sense. Having a long board prevented me from doing so in the early stages.
+- Keep the aside visible when picking a color.
+- And fix help button so that it always load picture, not 50% of the time.
