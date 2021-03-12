@@ -206,7 +206,6 @@ aside {
   }
   .cells {
     writing-mode: vertical-lr;
-    /* transform: rotate(270deg); */
   }
   .shop {
     writing-mode: vertical-lr;
