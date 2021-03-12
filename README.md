@@ -39,4 +39,4 @@ Player 1 starts on the bottom with the initial color of Blue. However, if you ha
 - Implementing stones in a 3D or creative manner to illustrate realism.
 - Create a mobile version that made sense. Having a long board prevented me from doing so in the early stages.
 - Keep the aside visible when picking a color.
-- And fix help button so that it always load picture, not 50% of the time.
+- And fix help button so that it always loads the picture, not 50% of the time.

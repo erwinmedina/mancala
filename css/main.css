@@ -47,7 +47,7 @@ aside {
   transition: 2s;
 }
 
-#player1 {
+#p1score {
   opacity: 0.8;
   height: 84px;
   width: 90px;
@@ -58,7 +58,7 @@ aside {
   justify-content: center;
 }
 
-#player2 {
+#p2score {
   height: 84px;
   width: 90px;
   border-radius: 0 25px 25px 0;
