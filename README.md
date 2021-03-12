@@ -32,11 +32,12 @@ The game also goes by a variety of different names, such as, "Ali Guli Mane" in 
 
 [Click here to get to the game](https://erwinmedina.github.io/mancala/)
 
-Player 1 starts on the bottom with the initial color of Blue. However, if you hate blue and want to switch colors, the color picker on the left hand side of the screen allows you to do so.
+Player 1 starts on the bottom of the board with the initial color of blue. Simply click on any of the 6 available containers on your side of the board to initiate. Player 2 will do the same for their side of the board. 
+If players dislike their respective color, they can adjust it on the left hand side with the colorpicker. 
 
 ## Icebox Items
 
 - Implementing stones in a 3D or creative manner to illustrate realism.
 - Create a mobile version that made sense. Having a long board prevented me from doing so in the early stages.
 - Keep the aside visible when picking a color.
-- And fix help button so that it always loads the picture, not 50% of the time.
+- And fix the 'help' button so that it always loads the picture. 
